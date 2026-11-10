@@ -1,7 +1,7 @@
 # Checklist de entrega DIO — Agente de Tarefas
 
-1. Crie o quadro **DIO** no [Trello](https://trello.com/) com três listas **A fazer**, **Em andamento**, **Concluído**.
-2. Obtenha API Key, Secret e Token conforme [guia DIO](https://github.com/digitalinnovationone/agent-carbon-footprint/blob/main/agents/agent04/readme.md); crie chave Google no [AI Studio](https://aistudio.google.com/app/apikey). **Não envie nenhuma credencial a terceiros nem ao GitHub**.
+1. Crie o quadro **Minhas Tarefa** no [Trello](https://trello.com/) com três listas **A fazer**, **Em andamento**, **Concluído**.
+2. Obtenha API Key e Token; o Secret é opcional para token direto conforme [guia DIO](https://github.com/digitalinnovationone/agent-carbon-footprint/blob/main/agents/agent04/readme.md); crie chave Google no [AI Studio](https://aistudio.google.com/app/apikey). **Não envie nenhuma credencial a terceiros nem ao GitHub**.
 3. Execute `INICIAR_WINDOWS.ps1`. Na primeira execução, ele cria o `.env` local. Preencha e salve. Na segunda, executa testes e inicia o `adk web`.
 4. No navegador `http://127.0.0.1:8091`, selecione `adk_tarefas` e experimente: *Quais são minhas tarefas hoje?*; *Crie uma tarefa Revisar Python, descrição Estudar funções, prazo 2026-11-12*; *Liste tarefas*; *Mova Revisar Python para Concluído*.
 5. Confira o Trello e tire dois prints reais (ADK + quadro). Guarde em `evidencias/`; o ZIP não contém prints inventados.

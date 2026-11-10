@@ -1,5 +1,6 @@
 """Ponto de entrada do Google Agent Development Kit (ADK)."""
 from pathlib import Path
+import os
 from dotenv import load_dotenv
 from google.adk.agents import Agent
 from .tools import adicionar_tarefa, get_temporal_context, listar_tarefas, mudar_status_tarefa
@@ -8,7 +9,7 @@ load_dotenv(Path(__file__).with_name(".env"))
 
 root_agent = Agent(
     name="organizador_trello",
-    model="gemini-3.5-flash-lite",
+    model=os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite"),
     description="Assistente de planejamento e acompanhamento de tarefas em um quadro Trello.",
     instruction="""Você é um organizador de tarefas profissional, claro e cuidadoso.
     Na primeira interação, use get_temporal_context para obter a data real no fuso configurado,

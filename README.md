@@ -26,7 +26,7 @@ ADK Web / Conversa  ---->  Gemini (interpretação e seleção de ferramentas)
                               py-trello / API
                                      |
                                      v
-                           Quadro Trello "DIO"
+                           Quadro Trello "Minhas Tarefa"
                      [A fazer] [Em andamento] [Concluído]
 ```
 
@@ -59,7 +59,7 @@ ADK Web / Conversa  ---->  Gemini (interpretação e seleção de ferramentas)
 ## 4. Estrutura do repositório
 
 ```text
-agente-tarefas-dio/
+agente-tarefas-adk-trello/
 ├── adk_tarefas/
 │   ├── __init__.py
 │   ├── agent.py
@@ -80,11 +80,11 @@ agente-tarefas-dio/
 ## 5. Pré-requisitos
 
 - Python **3.11+** (recomendado 3.12), Windows PowerShell, macOS ou Linux.
-- Conta no [Trello](https://trello.com/), com quadro `DIO` e três listas: `A fazer`, `Em andamento`, `Concluído`.
+- Conta no [Trello](https://trello.com/), com quadro `Minhas Tarefa` e três listas: `A fazer`, `Em andamento`, `Concluído`.
 - Credenciais Trello (API Key, token e, se disponível, Secret) de acordo com o [guia da DIO](https://github.com/digitalinnovationone/agent-carbon-footprint/blob/main/agents/agent04/readme.md).
 - Chave Google Gemini em [Google AI Studio](https://aistudio.google.com/app/apikey). Limites gratuitos dependem das políticas do provedor.
 
-**Modelo:** `gemini-3.5-flash-lite` (funções/ferramentas e nível gratuito sujeito a cotas e elegibilidade da API). Usamos o modelo atual porque o Google restringiu o acesso a versões 2.5 em novos projetos. Consulte as [opções de modelos](https://ai.google.dev/gemini-api/docs/models) antes de trocar.
+**Modelo:** `gemini-3.5-flash-lite` (configurável por `GEMINI_MODEL` no arquivo `.env`) (funções/ferramentas e nível gratuito sujeito a cotas e elegibilidade da API). Usamos o modelo atual porque o Google restringiu o acesso a versões 2.5 em novos projetos. Consulte as [opções de modelos](https://ai.google.dev/gemini-api/docs/models) antes de trocar.
 
 **Segurança:** não publique chaves, tokens, segredos ou arquivos `.env`. O `.gitignore` já impede o envio comum desses arquivos; confira o histórico do Git antes de publicar. Tokens devem ter as permissões mínimas necessárias; revogue credenciais expostas.
 
@@ -127,7 +127,7 @@ Abra `http://127.0.0.1:8091` e selecione `adk_tarefas`. Alternativamente execute
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-Os testes verificam data no fuso local, formato ISO, criação, listagem e filtros, normalização de acentos, ausência de cartões, nomes repetidos, prevenção de mudança duplicada, erros e não exposição de dados sensíveis. São **testes offline**, não fazem chamadas externas.
+Os 22 testes verificam data no fuso local, formato ISO, criação, listagem e filtros, normalização de acentos, ausência de cartões, nomes repetidos, prevenção de mudança duplicada, erros e não exposição de dados sensíveis. São **testes offline**, não fazem chamadas externas.
 
 ## 9. Evidências e resultado
 
@@ -145,3 +145,7 @@ Esta é uma demonstração educacional e de portfólio: não implementa autoriza
 - [Trello REST API](https://developer.atlassian.com/cloud/trello/rest/).
 
 **Desenvolvimento:** Dayane Beltrame — ADS, Engenharia de IA e Automação. Projeto de aprendizagem, não associado oficialmente ao Google, Atlassian ou Microsoft.
+
+## 12. Validação integrada assistida no Windows
+
+A versão final inclui `VALIDAR_E_INICIAR_WINDOWS.ps1`: executa instalação, 22 testes locais, consulta ao Gemini, teste completo do Trello (cria um cartão de teste e o move até Concluído) e inicia o ADK Web. **O teste real só será considerado aprovado após executado no computador com contas próprias.** O script faz uma chamada real ao modelo, sujeita à cota e preços da conta. Nenhuma credencial é impressa. O ADK Web ainda deve ser testado conversacionalmente para evidenciar a integração do agente.

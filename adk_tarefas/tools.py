@@ -68,10 +68,13 @@ def _data_para_trello(data_vencimento: str) -> str:
 def _cliente():
     chave = os.getenv("TRELLO_API_KEY")
     token = os.getenv("TRELLO_TOKEN")
-    if not chave or not token:
+    if not chave or not token or chave.startswith("COLE_") or token.startswith("COLE_"):
         raise RuntimeError("Credenciais Trello ausentes. Preencha TRELLO_API_KEY e TRELLO_TOKEN no .env.")
+    segredo = os.getenv("TRELLO_API_SECRET", "").strip()
+    if segredo.startswith(("COLE_", "SUA_")):
+        segredo = ""  # o Secret é opcional para API Key + Token; ignorar modelo não preenchido
     from trello import TrelloClient  # import tardio: testes offline não precisam de py-trello
-    return TrelloClient(api_key=chave, api_secret=os.getenv("TRELLO_API_SECRET") or None, token=token)
+    return TrelloClient(api_key=chave, api_secret=segredo or None, token=token)
 
 
 def _quadro():

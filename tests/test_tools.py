@@ -9,6 +9,7 @@ CAMINHO = Path(__file__).resolve().parents[1] / "adk_tarefas" / "tools.py"
 spec = importlib.util.spec_from_file_location("ferramentas_offline", CAMINHO)
 tools = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(tools)
+_CLIENTE_ORIGINAL = tools._cliente
 
 
 class Cartao:
@@ -132,6 +133,41 @@ class TestesFerramentas(unittest.TestCase):
             r = tools.listar_tarefas()
             self.assertEqual(r["status"], "erro")
             self.assertNotIn("token secreto", str(r))
+
+    def test_quadro_real_minhas_tarefa(self):
+        self.quadro.name = "Minhas Tarefa"
+        with patch.dict(os.environ, {"TRELLO_BOARD_NAME": "Minhas Tarefa"}):
+            self.assertEqual(tools.listar_tarefas()["status"], "sucesso")
+
+    def test_data_bissexto_e_data_inexistente(self):
+        self.assertTrue(tools._data_para_trello("2028-02-29").startswith("2028-02-29"))
+        with self.assertRaises(ValueError):
+            tools._data_para_trello("2027-02-29")
+
+    def test_descricao_muito_longa_rejeitada(self):
+        r = tools.adicionar_tarefa("Teste", "x" * 5001, "2026-11-12")
+        self.assertEqual(r["status"], "erro")
+
+    def test_lista_especifica_ausente(self):
+        self.quadro.listas = [Lista("A fazer", "l1")]
+        self.assertEqual(tools.listar_tarefas("concluido")["status"], "erro")
+
+    def test_fuso_invalido_sanitizado(self):
+        with patch.dict(os.environ, {"APP_TIMEZONE": "Inválido/Inexistente"}):
+            r = tools.get_temporal_context()
+            self.assertEqual(r["status"], "erro")
+            self.assertIn("Fuso", r["mensagem"])
+
+    def test_secret_placeholder_ignorado(self):
+        import sys
+        from types import ModuleType
+        fake = ModuleType("trello")
+        calls = []
+        fake.TrelloClient = lambda **kw: calls.append(kw)
+        with patch.dict(sys.modules, {"trello": fake}):
+            with patch.dict(os.environ, {"TRELLO_API_KEY": "key-123", "TRELLO_TOKEN": "token-123", "TRELLO_API_SECRET": "COLE_SEU_SEGREDO_TRELLO_AQUI"}):
+                _CLIENTE_ORIGINAL()
+        self.assertEqual(calls[0]["api_secret"], None)
 
     def test_ausencia_credenciais(self):
         with patch.dict(os.environ, {"TRELLO_API_KEY": "", "TRELLO_TOKEN": ""}):

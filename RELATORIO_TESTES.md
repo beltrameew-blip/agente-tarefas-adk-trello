@@ -4,7 +4,7 @@
 
 ## Verificações executadas no ambiente de preparação
 
-- **15 testes de unidade** executados com `python -m unittest discover -s tests -v`: **15 aprovados, 0 falhas**.
+- **22 testes de unidade** executados com `python -m unittest discover -s tests -v`: **15 aprovados, 0 falhas**.
 - **Sintaxe de Python:** módulos compilados sem erro usando `python -m compileall`.
 - **Sem serviços externos:** testes com quadros e cartões simulados, **sem uso de credenciais reais**.
 - Cenários: data ISO e fuso horário, criação de cartão, filtros de listagem, alias de status com acento, movimentação entre listas, não duplicação, ambiguidade, quadro inexistente, erro sanitizado.
