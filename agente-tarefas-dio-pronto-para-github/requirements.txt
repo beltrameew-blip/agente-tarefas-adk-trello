@@ -1,4 +1,0 @@
-google-adk>=1.15,<3
-py-trello>=0.20,<1
-python-dotenv>=1.0,<2
-tzdata>=2025.1

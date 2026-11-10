@@ -1,14 +1,22 @@
-# Checklist de entrega DIO — Agente de Tarefas
+# Entrega DIO — Agente Inteligente de Tarefas
 
-1. Crie o quadro **Minhas Tarefa** no [Trello](https://trello.com/) com três listas **A fazer**, **Em andamento**, **Concluído**.
-2. Obtenha API Key e Token; o Secret é opcional para token direto conforme [guia DIO](https://github.com/digitalinnovationone/agent-carbon-footprint/blob/main/agents/agent04/readme.md); crie chave Google no [AI Studio](https://aistudio.google.com/app/apikey). **Não envie nenhuma credencial a terceiros nem ao GitHub**.
-3. Execute `INICIAR_WINDOWS.ps1`. Na primeira execução, ele cria o `.env` local. Preencha e salve. Na segunda, executa testes e inicia o `adk web`.
-4. No navegador `http://127.0.0.1:8091`, selecione `adk_tarefas` e experimente: *Quais são minhas tarefas hoje?*; *Crie uma tarefa Revisar Python, descrição Estudar funções, prazo 2026-11-12*; *Liste tarefas*; *Mova Revisar Python para Concluído*.
-5. Confira o Trello e tire dois prints reais (ADK + quadro). Guarde em `evidencias/`; o ZIP não contém prints inventados.
-6. Crie **um repositório público novo** no GitHub, por exemplo `agente-tarefas-adk-trello`. Extraia o ZIP e envie **os arquivos e pastas do conteúdo**, não o ZIP fechado. Não envie `.env`, pastas `.venv` nem credenciais.
-7. Revise o README no GitHub, assegure que os prints não exponham informações e que os testes rodaram.
-8. Cole a URL completa do novo repositório em **Entrega do Projeto** na DIO; inclua a descrição e confirme o termo. Submeta somente se executou de fato e verificou as funcionalidades.
+**Repositório público existente:** https://github.com/beltrameew-blip/agente-tarefas-adk-trello
 
-## Texto sugerido para a descrição na DIO (usar somente após executar)
+**Quadro Trello existente:** https://trello.com/b/1v8jSR3b/minhas-tarefa
 
-**Agente Inteligente de Tarefas | Google ADK + Gemini + Python + Trello.** Desenvolvi um agente conversacional que organiza atividades no Trello por meio de ferramentas Python para consulta de data, criação, listagem e movimentação de cartões. Como evolução do projeto-base da DIO, implementei normalização de status com acentos, tratamento de falhas, prevenção de movimentações ambíguas, configuração flexível do quadro e correção do vencimento para o fuso America/Sao_Paulo. O repositório inclui código, testes unitários offline, guia de instalação Windows, configuração segura das credenciais e evidências reais de execução. **Tecnologias:** Python, Google ADK, Gemini, py-trello e unittest.
+Não crie outros repositórios, quadros ou listas. Preserve cartões reais.
+
+## Única etapa local de autorização e integração
+
+1. Configure no computador `adk_tarefas/.env` (copiado de `adk_tarefas/.env.exemplo`) com `GOOGLE_API_KEY`, `TRELLO_API_KEY` e `TRELLO_TOKEN` válidos. Não compartilhe chaves nem envie `.env` ao GitHub.
+2. Na raiz do projeto, use o ambiente `.venv` já instalado e execute `VALIDAR_E_INICIAR_WINDOWS.ps1`. O script **não reinstala dependências e não repete a suíte offline**; realiza uma única jornada real, criando um cartão de teste exclusivo e mantendo-o em Concluído.
+3. Abra http://127.0.0.1:8091, escolha `adk_tarefas` e teste os comandos de criação, listagem e movimentação em linguagem natural. Confira o cartão no quadro. Registre capturas reais **sem segredos**.
+4. Envie o link do repositório existente no campo de entrega da DIO, conforme a interface disponibilizada ao seu curso, e confira a confirmação da submissão. Só ateste integração como aprovada se obteve resultados reais.
+
+## Descrição profissional para a DIO
+
+**Agente Inteligente de Tarefas — Google ADK, Gemini, Python e Trello**
+
+Desenvolvi um agente conversacional para organização de tarefas que interpreta solicitações em linguagem natural e utiliza ferramentas Python integradas à API Trello. A solução permite consultar data e hora no fuso local, criar cartões, listar tarefas por etapa e movimentá-las entre A fazer, Em andamento e Concluído. Evoluí o projeto-base com validação de entradas, normalização de acentos e status, tratamento seguro de erros, proteção contra movimentações ambíguas, configuração flexível do quadro e testes automatizados offline. O repositório contém código-fonte, documentação técnica, scripts de execução Windows e roteiro de validação de serviços externos. A integração com contas reais e as evidências da interface são documentadas separadamente dos testes simulados.
+
+**Link:** https://github.com/beltrameew-blip/agente-tarefas-adk-trello

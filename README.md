@@ -149,3 +149,11 @@ Esta é uma demonstração educacional e de portfólio: não implementa autoriza
 ## 12. Validação integrada assistida no Windows
 
 A versão final inclui `VALIDAR_E_INICIAR_WINDOWS.ps1`: executa instalação, 22 testes locais, consulta ao Gemini, teste completo do Trello (cria um cartão de teste e o move até Concluído) e inicia o ADK Web. **O teste real só será considerado aprovado após executado no computador com contas próprias.** O script faz uma chamada real ao modelo, sujeita à cota e preços da conta. Nenhuma credencial é impressa. O ADK Web ainda deve ser testado conversacionalmente para evidenciar a integração do agente.
+
+## Atualização de entrega e validação — 09/11/2026
+
+**Repositório e quadro já existem; não os recrie.** O quadro de teste é [Minhas Tarefa](https://trello.com/b/1v8jSR3b/minhas-tarefa). O modelo padrão `gemini-3.5-flash-lite` está documentado como compatível com function calling, mas o acesso depende da chave e das cotas da conta. A validação real está **pendente** enquanto não houver registro de execução autenticada.
+
+**Windows com dependências já instaladas:** na raiz do projeto existente, copie `adk_tarefas/.env.exemplo` para `adk_tarefas/.env`, preencha-o apenas localmente e execute `VALIDAR_E_INICIAR_WINDOWS.ps1` com PowerShell. A versão atual **não reinstala** dependências nem repete automaticamente os 22 testes offline já registrados. Ela faz uma chamada real ao Gemini e, se houver credenciais, cria e move um único cartão de teste com prefixo `DIO VALIDACAO` no Trello; o cartão permanece em Concluído. Esse teste é uma ação de escrita e pode consumir cota da API. Consulte [RELATORIO_TESTES.md](RELATORIO_TESTES.md) para separar evidências anteriores de resultados ainda pendentes.
+
+A prova da experiência conversacional continua sendo uma interação real no `adk web`, confirmando que o modelo invocou as ferramentas. Capture telas reais, sem credenciais. Confira [COMO_ENTREGAR_DIO.md](COMO_ENTREGAR_DIO.md) para a submissão; não declare validação ou envio à DIO antes da confirmação.

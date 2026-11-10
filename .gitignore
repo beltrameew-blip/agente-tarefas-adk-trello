@@ -1,0 +1,21 @@
+# Nunca versionar segredos ou configurações locais
+.env
+.env.*
+!.env.exemplo
+!.env.example
+**/.env
+**/.env.*
+!**/.env.exemplo
+!**/.env.example
+*.pem
+*.key
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+.DS_Store
+Thumbs.db

@@ -1,19 +1,19 @@
-# Relatório de validação local
+# Relatório de validação — Agente Inteligente de Tarefas
 
-**Projeto:** Agente Inteligente de Tarefas — Google ADK + Gemini + Trello
+Atualização documental: 09/11/2026.
 
-## Verificações executadas no ambiente de preparação
+## Evidências existentes
 
-- **22 testes de unidade** executados com `python -m unittest discover -s tests -v`: **15 aprovados, 0 falhas**.
-- **Sintaxe de Python:** módulos compilados sem erro usando `python -m compileall`.
-- **Sem serviços externos:** testes com quadros e cartões simulados, **sem uso de credenciais reais**.
-- Cenários: data ISO e fuso horário, criação de cartão, filtros de listagem, alias de status com acento, movimentação entre listas, não duplicação, ambiguidade, quadro inexistente, erro sanitizado.
+- Segundo a execução local registrada antes desta atualização, **22 testes offline passaram**, usando `python -m unittest discover -s tests -v`.
+- O repositório contém 21 métodos de teste no arquivo `tests/test_tools.py` e 1 teste de jornada simulada em `tests/test_jornada_offline.py`.
+- As verificações offline simulam Trello e **não demonstram** conexão real à API, uso de ferramentas pelo Gemini ou funcionamento do ADK Web.
+- A versão anterior deste relatório dizia contraditoriamente “22 testes” e “15 aprovados”; esta inconsistência foi corrigida. Não houve nova execução dos testes nesta revisão documental.
 
-## Verificações que ainda dependem da pessoa responsável
+## Checagens de integração necessárias
 
-- Instalar `google-adk` e `py-trello` no Windows e validar inicialização `adk web`.
-- Inserir credenciais próprias em `adk_tarefas/.env`, que **não** está versionado.
-- Testar chamadas reais ao Gemini e Trello e verificar criação/listagem/movimentação.
-- Capturar imagens reais do ADK e do quadro para o portfólio.
+- Chave Gemini autorizada para `gemini-3.5-flash-lite` e com chamadas disponíveis na cota da conta.
+- Acesso real ao quadro Trello **Minhas Tarefa**.
+- Criar um cartão de validação com nome exclusivo em **A fazer**, consultar, mover para **Em andamento**, mover para **Concluído**, consultar o estado final.
+- Iniciar `adk web` e verificar que a conversa em linguagem natural efetivamente chama as ferramentas.
 
-**Conclusão:** código e testes offline preparados; integração ponta a ponta permanece **não verificada** até o teste com contas reais. Não interpretar este relatório como prova de funcionamento no Trello de produção.
+**Estado verificado:** integração externa **PENDENTE**. Não há capturas reais de Gemini/ADK e Trello anexadas nesta revisão. Não caracterizar como produção validada nem como submissão aceita na DIO.
